@@ -40,6 +40,7 @@ pub async fn create_app() -> Router {
         .route("/api/v0/sayheykid", post(handlers::hello::sayheykid_post_handler))
         .route("/api/v0/pronounce", get(handlers::pronounce::pronounce_get_handler))
         .route("/api/v0/pronounce", post(handlers::pronounce::pronounce_post_handler))
+        .route("/api/v0/pinyin/recommend", get(handlers::pinyin::pinyin_recommend_handler))
         .with_state(db_arc)
         .layer(ServiceBuilder::new()
             .layer(cors));
