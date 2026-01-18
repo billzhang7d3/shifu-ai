@@ -1,4 +1,5 @@
-import { AppShell, Center, Group, Title } from "@mantine/core";
+import { AppShell, Center, Group, Title, Button } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 const data = {
   title: "师傅.ai",
@@ -6,6 +7,8 @@ const data = {
 }
 
 function HomePage() {
+  const navigate = useNavigate();
+
   return (
     <AppShell
       header={{ height: 60 }}
@@ -17,10 +20,13 @@ function HomePage() {
           </Group>
       </AppShell.Header>
       <AppShell.Main>
-        <Center>
+        <Center style={{ flexDirection: "column", gap: "20px" }}>
           <Title order={2}>
             {data.greeting}
           </Title>
+          <Button onClick={() => navigate("/pronounce")}>
+            Pronounce
+          </Button>
         </Center>
       </AppShell.Main>
     </AppShell>

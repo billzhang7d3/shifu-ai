@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
+    "docker:up": "cd api && docker compose up -d",
+    "docker:down": "cd api && docker compose down",
+    "api:dev": "cd api && cargo run",
+    "dev": "npm run docker:up || true && concurrently \"npm run api:dev\" \"vite --port 3000\"",
     "build": "tsc && vite build",
-    "preview": "vite preview",
+    "preview": "npm run docker:up || true && concurrently \"npm run api:dev\" \"vite preview\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -22,6 +25,7 @@
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.1.2",
     "postcss": "^8.5.6",
     "postcss-preset-mantine": "1.18.0",
     "postcss-simple-vars": "^7.0.1",
