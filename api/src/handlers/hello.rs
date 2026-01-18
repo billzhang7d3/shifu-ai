@@ -18,7 +18,7 @@ pub async fn hello_handler(
     ).into_response()
 }
 
-pub async fn sayheykid_handler(
+pub async fn sayheykid_get_handler(
     State(db): State<Arc<Database>>
 ) -> impl IntoResponse {
     let collection = db.collection::<mongodb::bson::Document>("greetings");
